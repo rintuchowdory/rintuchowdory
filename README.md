@@ -38,6 +38,20 @@ Deployment notes
 If you'd like, I can: add a custom domain config, wire up Vercel deployment files, or improve the site content.
 
 ```
+
+Vercel automatic deploy (via GitHub Actions)
+-------------------------------------------
+
+I added a sample GitHub Actions workflow to deploy to Vercel: `.github/workflows/vercel-deploy.yml`.
+
+To use it:
+
+1. In Vercel, create a project for this repository and note the **Project ID** and **Organization ID**.
+2. Create the following GitHub repository secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID`.
+3. Push to `main` — the workflow will build and call Vercel to deploy the site.
+
+If you prefer Vercel's native Git integration, you can instead connect the repo in the Vercel dashboard and skip the Action.
+
 ## Hi there 👋
 
 <!--
