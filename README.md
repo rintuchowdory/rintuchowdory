@@ -52,6 +52,11 @@ To use it:
 
 If you prefer Vercel's native Git integration, you can instead connect the repo in the Vercel dashboard and skip the Action.
 
+License
+-------
+
+This project is released under the MIT License. See the `LICENSE` file for details.
+
 ## Hi there 👋
 
 <!--
