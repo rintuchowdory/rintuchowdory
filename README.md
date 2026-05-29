@@ -1,75 +1,65 @@
-```markdown
-## Hi there 👋
+# Rintu Chowdory — ChatGPT Clone Portfolio
 
-This repository contains a minimal Next.js starter site and a GitHub Actions CI/CD workflow.
+This repository contains a Next.js ChatGPT-style portfolio assistant built for GitHub Pages. It is a recruiter-friendly project that demonstrates chat UI design, React state management, prompt workflows, and safe deployment practices.
 
-Getting started
----------------
+## Features
 
-1. Install dependencies:
+- ChatGPT-style messaging interface for portfolio and CV prompts.
+- Starter prompts for project descriptions, CRM planning, and GitHub README improvements.
+- Static GitHub Pages deployment with no secrets committed to the repository.
+- OpenAI-ready documentation for adding a real server-side API integration later.
+
+## Local development
 
 ```bash
 npm install
-```
-
-2. Run development server:
-
-```bash
 npm run dev
 ```
 
-Build and export (static):
+Open `http://localhost:3000`.
+
+## Production build
 
 ```bash
 npm run build
-npm run export
 ```
 
-CI/CD
-------
+Because `next.config.js` uses `output: 'export'`, static files are generated in `out/`.
 
-- The workflow at `.github/workflows/ci.yml` installs dependencies, builds the site, runs a static export (`out/`), and publishes `out/` to the `gh-pages` branch using `peaceiris/actions-gh-pages` and the built-in `GITHUB_TOKEN`.
+## OpenAI API key setup
 
-Deployment notes
-----------------
+This static GitHub Pages version runs in demo mode. Do **not** put an OpenAI API key in browser code, Git history, or public repository settings.
 
-- For automatic production deployments consider connecting the repo to Vercel (recommended for Next.js) or keep using GitHub Pages for a static export.
+To add real AI responses later:
 
-If you'd like, I can: add a custom domain config, wire up Vercel deployment files, or improve the site content.
+1. Create an API key from the OpenAI dashboard.
+2. Store it as a private environment variable named `OPENAI_API_KEY` on a server-side host such as Vercel, Render, Fly.io, or your own backend.
+3. Add a private API endpoint that calls the OpenAI Responses API from the server.
+4. Call your own endpoint from the React UI.
 
+Example environment variable name:
+
+```bash
+OPENAI_API_KEY=your_private_key_here
 ```
 
-Vercel automatic deploy (via GitHub Actions)
--------------------------------------------
+## GitHub Pages deployment
 
-I added a sample GitHub Actions workflow to deploy to Vercel: `.github/workflows/vercel-deploy.yml`.
+Deployment is automated via `.github/workflows/github-pages.yml`.
 
-To use it:
+1. Push to `main`.
+2. In GitHub repo settings, go to **Pages**.
+3. Set **Source** to **GitHub Actions**.
+4. Wait for the **Deploy GitHub Pages** workflow to finish.
 
-1. In Vercel, create a project for this repository and note the **Project ID** and **Organization ID**.
-2. Create the following GitHub repository secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID`.
-3. Push to `main` — the workflow will build and call Vercel to deploy the site.
+For this repository, GitHub may publish the project page at:
 
-If you prefer Vercel's native Git integration, you can instead connect the repo in the Vercel dashboard and skip the Action.
+- `https://rintuchowdory.github.io/rintuchowdory/`
 
-License
--------
+If you create a repository named `rintuchowdory.github.io`, the same site can publish at:
 
-This project is released under the MIT License. See the `LICENSE` file for details.
+- `https://rintuchowdory.github.io/`
 
-## Hi there 👋
+## CI checks
 
-<!--
-**rintuchowdory/rintuchowdory** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+`.github/workflows/ci.yml` runs dependency install and static build checks on PRs and pushes.
